@@ -6,11 +6,10 @@ from PIL import Image
 set_website_title("S T E G A N O G R A P H Y")
 set_site_information(
     author = "Tyler S.",
-    description - "Simple site to encode and decode an image with a message using steganography",
-    sources = "Drafter docs, Drafter Tutor model, and a nice Geeks for Geeks article about Python Steganography",
-    planning = "plan.pdf"
-    links = []
-)
+    description = "Simple site to encode and decode an image with a message using steganography",
+    sources = "Drafter docs, Drafter Tutor model, and a nice Geeks for Geeks article about Python",
+    planning = "plan0.pdf", "plan1.pdf",
+    links = [])
 hide_debug_information()
 
 
