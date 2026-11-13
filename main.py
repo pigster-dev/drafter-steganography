@@ -1,6 +1,5 @@
 # import statements
 from drafter import *
-from bakery import assert_equal
 from dataclasses import dataclass
 from PIL import Image as PIL_Image
 import io
@@ -143,9 +142,9 @@ def history_page(state: State) -> Page:
     '''
     page that containes a log of successfully decoded messages.
     '''
-    content = [
-        Header("M E S S A G E H I S T O R Y")
-    ]
+    # ensure list is of type "PageContent" so it expects various drafter elements
+    # avoids type errors!!!
+    content: list[PageContent] = [Header("M E S S A G E H I S T O R Y")]
 
     for message in state.message_log:
         content.append("Message: " + message.plaintext)
@@ -204,11 +203,14 @@ def image_to_binary(image: PIL_Image.Image) -> str:
     width, height = image.size
     pixels = image.load()
 
-    binary_message = ""
+    if pixels == None:
+        return ""
 
+    binary_message = ""
+    
     for y in range(height):
         for x in range(width):
-            red, green, blue = pixels[x, y]
+            red, green, blue = pixels[x, y] # type: ignore[misc]
 
             binary_message += str(red % 2)
             binary_message += str(green % 2)
@@ -217,7 +219,7 @@ def image_to_binary(image: PIL_Image.Image) -> str:
     return binary_message
 
 @route
-def encode_message(image: PIL_Image, message: str) -> PIL_Image:
+def encode_message(image: PIL_Image.Image, message: str) -> PIL_Image.Image:
     '''
     intakes an image and the message, and iterates through the image's pixels to modify
     the pixels, encoding the provided message using least siginficant bit encryption.
