@@ -2,6 +2,7 @@
 from drafter import *
 from dataclasses import dataclass
 from PIL import Image as PIL_Image
+from typing import cast
 import io
 
 # website info
@@ -210,7 +211,11 @@ def image_to_binary(image: PIL_Image.Image) -> str:
     
     for y in range(height):
         for x in range(width):
-            red, green, blue = pixels[x, y] # type: ignore[misc]
+            pixel = cast(tuple[int, int, int], pixels[x, y])
+
+            red = pixel[0]
+            green = pixel[1]
+            blue = pixel[2]
 
             binary_message += str(red % 2)
             binary_message += str(green % 2)
@@ -239,7 +244,7 @@ def encode_message(image: PIL_Image.Image, message: str) -> PIL_Image.Image:
 
     for y in range(height):
         for x in range(width):
-            pixel = pixels[x, y]
+            pixel = cast(tuple[int,int,int], pixels[x,y])
 
             red = pixel[0]
             green = pixel[1]
