@@ -203,7 +203,7 @@ def image_to_binary(image: PIL_Image.Image) -> str:
     width, height = image.size
     pixels = image.load()
 
-    if pixels == None:
+    if pixels is None:
         return ""
 
     binary_message = ""
@@ -231,12 +231,19 @@ def encode_message(image: PIL_Image.Image, message: str) -> PIL_Image.Image:
 
     width, height = image.size
     pixels = image.load()
+    
+    if pixels is None:
+        return image
 
     bit_index = 0
 
     for y in range(height):
         for x in range(width):
-            red, green, blue = pixels[x, y]
+            pixel = pixels[x, y]
+
+            red = pixel[0]
+            green = pixel[1]
+            blue = pixel[2]
 
             # Put the pixel's color values into a list
             color_values = [red, green, blue]
