@@ -6,14 +6,13 @@ from typing import cast
 import io
 
 # website info
-set_website_title("S T E G A N O G R A P H Y")
+set_website_title("STEGANOGRAPHY")
 set_site_information(
     author = "Tyler S.",
     description = "Simple site to encode and decode an image with a message using steganography",
     sources = "Thanks to Drafter docs, Drafter Tutor model, and a nice Geeks for Geeks article about Python Steganography",
     planning = ["plan1.pdf", "plan0.pdf"],
-    links = ["https://github.com/pigster-dev/drafter-steganography/blob/main/plan1s.pdf",
-             "https://github.com/pigster-dev/drafter-steganography/blob/main/plan0.pdf"]
+    links = ["https://github.com/pigster-dev/drafter-steganography.git"]
 )
 hide_debug_information()
 set_website_framed(False)
