@@ -45,7 +45,7 @@ def index(state: State) -> Page:
     '''Main title page'''
     return Page(state,
                 [Header("S T E G A N O G R A P H Y"),
-                 "Encode a message into an image, and decode encoded images.",
+                 "Encode a message into an image, and decode encoded images. \n",
                  Button("Encode", "encode_page"),
                  Button("Decode", "decode_page"),
                  Button("Message History", "history_page")
