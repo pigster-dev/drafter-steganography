@@ -45,6 +45,7 @@ def index(state: State) -> Page:
     '''Main title page'''
     return Page(state,
                 [Header("S T E G A N O G R A P H Y"),
+                 "Encode a message into an image, and decode encoded images.",
                  Button("Encode", "encode_page"),
                  Button("Decode", "decode_page"),
                  Button("Message History", "history_page")
@@ -86,6 +87,7 @@ def upload_encoded_image(state: State, image_file: bytes) -> Page:
 
     return Page(state, [
         Header("D E C O D E D"),
+        "Decoded image:",
         Image(state.encoded_image),
         "Your hidden message is:",
         state.message.plaintext,
