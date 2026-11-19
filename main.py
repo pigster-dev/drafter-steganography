@@ -56,7 +56,7 @@ def encode_page(state: State) -> Page:
     '''Page to upload an image for encoding'''
     return Page(state,
                 [Header("E N C O D E"),
-                 "Upload an image...",
+                 "Upload an image... \n",
                  FileUpload("image_file", accept="image/*"),
                  Button("Submit", "upload_image"),
                  Button("Home", "index")])
@@ -66,7 +66,7 @@ def decode_page(state: State) -> Page:
     '''Page to upload an encoded image to decode'''
     return Page(state, [
         Header("D E C O D E"),
-        "Upload an encoded image...",
+        "Upload an encoded image... \n",
         FileUpload("image_file", accept="image/*"),
         Button("Submit", "upload_encoded_image"),
         Button("Home", "index")
@@ -87,7 +87,7 @@ def upload_encoded_image(state: State, image_file: bytes) -> Page:
 
     return Page(state, [
         Header("D E C O D E D"),
-        "Decoded image:",
+        "Decoded image: \n",
         Image(state.encoded_image),
         "Your hidden message is:",
         state.message.plaintext,
@@ -108,13 +108,13 @@ def encode(state: State, message: str) -> Page:
 
     return Page(state, [
         Header("E N C O D I N G S U C C E S S"),
-        "Original image:",
+        "Original image: \n",
         Image(state.image),
-        "Encoded image:",
+        "Encoded image: \n",
         Image(state.encoded_image),
-        "Message:",
+        "Message: \n",
         state.message.plaintext,
-        "Binary:",
+        "Binary: \n",
         str(state.message.binary),
         Download("Download Image", "secret.png", state.encoded_image),
         Button("Home", "index")
@@ -132,7 +132,7 @@ def upload_image(state: State, image_file: bytes) -> Page:
     return Page(state, [
         Header("E N C O D E"),
         Image(state.image),
-        "Your image is ready!",
+        "Your image is ready! \n",
         "Enter your secret message:",
         TextBox("message"),
         Button("Encode Message", "encode"),
